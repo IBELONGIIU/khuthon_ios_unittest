@@ -1,0 +1,131 @@
+  UW PICO 5.09                           New Buffer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                               [ Read 23 lines ]
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Pg   ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where is  ^V Next Pg   ^U UnCut Text^T To Spell
+  UW PICO 5.09                           New Buffer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                               [ Read 23 lines ]
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Pg   ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where is  ^V Next Pg   ^U UnCut Text^T To Spell
+  UW PICO 5.09                           New Buffer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                               [ Read 108 lines ]
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Pg   ^K Cut Text  ^C Cur Pos
+^X Exit      ^J Justify   ^W Where is  ^V Next Pg   ^U UnCut Text^T To Spell
+Last login: Thu May 15 00:09:34 on ttys007
+ w__hy_n@gim-uhyeon-ui-MacBookAir  ~   main  cd /Users/w__hy_n/StudioProjects/KHUTHON/ios
+ w__hy_n@gim-uhyeon-ui-MacBookAir  ~/StudioProjects/KHUTHON/ios   main  nano
+ Podfile
+ w__hy_n@gim-uhyeon-ui-MacBookAir  ~/StudioProjects/KHUTHON/ios   main  nano
+ Podfile
+ w__hy_n@gim-uhyeon-ui-MacBookAir  ~/StudioProjects/KHUTHON/ios   main  export FLUTTER_ROOT=/opt/homebrew/Caskroom/flutter/3.29.2/flutter
+
+ w__hy_n@gim-uhyeon-ui-MacBookAir  ~/StudioProjects/KHUTHON/ios   main  nano ~/.zshrc
+
+ w__hy_n@gim-uhyeon-ui-MacBookAir  ~/StudioProjects/KHUTHON/ios   main  source ~/.zshrc
+
+ w__hy_n@gim-uhyeon-ui-MacBookAir  ~/StudioProjects/KHUTHON/ios   main  cd /Users/w__hy_n/StudioProjects/KHUTHON/ios
+ w__hy_n@gim-uhyeon-ui-MacBookAir  ~/StudioProjects/KHUTHON/ios   main  pod cache clean --all
+
+ w__hy_n@gim-uhyeon-ui-MacBookAir  ~/StudioProjects/KHUTHON/ios   main 
+ w__hy_n@gim-uhyeon-ui-MacBookAir  ~/StudioProjects/KHUTHON/ios   main  pod install
+
+[!] Invalid `Podfile` file: syntax error, unexpected constant, expecting ')'
+target 'Runner' do
+        ^~~~~~
+/Users/w__hy_n/StudioProjects/KHUTHON/ios/Podfile:20: syntax error, unexpected c
+  UW PICO 5.09                           New Buffer
+
+
+
+
+# Uncomment the next line to define a global platform for your project
+platform :ios, '13.0'
+
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+def flutter_install_ios_plugin_pods(flutter_root)
+  eval(File.read(File.join(flutter_root, 'packages', 'flutter_tools', 'bin', 'podhelper.rb')), binding)
+end
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  flutter_root = File.expand_path('..', __dir__)
+  flutter_install_ios_plugin_pods(flutter_root)
+
+  target 'RunnerTests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
+  end
+end
+

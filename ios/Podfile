@@ -1,0 +1,30 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '13.0'
+
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+def flutter_install_ios_plugin_pods(flutter_root)
+  eval(File.read(File.join('/opt/homebrew/Caskroom/flutter/flutter/packages/flutter_tools/bin', 'podhelper.rb')), binding)
+end
+
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  flutter_root = File.expand_path('..', __dir__)
+  flutter_install_ios_plugin_pods(flutter_root)
+
+  target 'RunnerTests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
+  end
+end
+
